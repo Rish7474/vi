@@ -1,0 +1,28 @@
+# Environment files & secrets (NEVER COMMIT)
+.env
+.env.local
+.env.development
+.env.production
+.env*.local
+*.key
+*.pem
+credentials.json
+
+# Allow example environment file
+!/.env.example
+
+# Local backend cache & temporary data
+backend/data/
+data/
+*.log
+npm-debug.log*
+
+# Build artifacts & package archives
+dist/
+node_modules/
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp

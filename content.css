@@ -1,0 +1,600 @@
+/* content.css — Simplified Vi Inline Buttons & Ask Vi Chat Pane */
+
+.vi-inline-actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vi-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a !important;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none !important;
+  line-height: 1.3;
+  transition: all 0.15s ease;
+}
+
+.vi-action-btn:hover {
+  background: #f1f5f9;
+}
+
+.vi-action-btn.primary {
+  background: #2b3339;
+  border-color: #414d56;
+  color: #ffffff !important;
+}
+
+.vi-action-btn.primary:hover {
+  background: #37424a;
+  border-color: #52606b;
+}
+
+.vi-action-btn-logo {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Ask Vi Chat Pane (Right-side Resizable Drawer) */
+.vi-chat-pane {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  bottom: 16px;
+  width: 420px;
+  min-width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  text-align: left;
+  transition: width 0.12s ease-out;
+}
+
+.vi-chat-pane.vi-hidden {
+  display: none !important;
+}
+
+.vi-chat-pane.vi-resizing {
+  transition: none !important;
+}
+
+.vi-chat-pane.vi-maximized {
+  width: min(860px, calc(100vw - 32px)) !important;
+}
+
+/* Draggable Resize Handle on Left Edge */
+.vi-resize-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  cursor: col-resize;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  touch-action: none;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.vi-resize-handle:hover,
+.vi-chat-pane.vi-resizing .vi-resize-handle {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.vi-resize-grip {
+  width: 3px;
+  height: 38px;
+  border-radius: 999px;
+  background: #475569;
+  transition: all 0.15s ease;
+}
+
+.vi-resize-handle:hover .vi-resize-grip,
+.vi-chat-pane.vi-resizing .vi-resize-grip {
+  background: #38bdf8;
+  height: 56px;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+/* Active body cursor & iframe isolation during drag */
+body.vi-resizing-active {
+  user-select: none !important;
+  cursor: ew-resize !important;
+  cursor: col-resize !important;
+}
+body.vi-resizing-active iframe,
+body.vi-resizing-active video,
+body.vi-resizing-active object,
+body.vi-resizing-active embed {
+  pointer-events: none !important;
+}
+
+.vi-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px 11px 18px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  flex-shrink: 0;
+}
+
+.vi-pane-header-info {
+  flex: 1;
+  min-width: 0;
+  margin-right: 10px;
+}
+
+.vi-pane-title {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #f8fafc;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.vi-brand-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.vi-pane-title-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.vi-pane-sub {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vi-pane-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.vi-pane-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 13.5px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 5px 7px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.vi-pane-btn:hover {
+  background: #334155;
+  color: #f8fafc;
+}
+
+.vi-close-btn {
+  font-size: 15px;
+}
+
+.vi-messages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vi-messages::-webkit-scrollbar,
+.vi-table-wrap::-webkit-scrollbar,
+.vi-code-block::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.vi-messages::-webkit-scrollbar-track,
+.vi-table-wrap::-webkit-scrollbar-track,
+.vi-code-block::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+.vi-messages::-webkit-scrollbar-thumb,
+.vi-table-wrap::-webkit-scrollbar-thumb,
+.vi-code-block::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 999px;
+}
+.vi-messages::-webkit-scrollbar-thumb:hover,
+.vi-table-wrap::-webkit-scrollbar-thumb:hover,
+.vi-code-block::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.vi-bubble {
+  box-sizing: border-box;
+  max-width: 90%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.vi-bubble.user {
+  align-self: flex-end;
+  background: #2563eb;
+  color: #ffffff;
+  border-bottom-right-radius: 3px;
+}
+
+.vi-bubble.assistant {
+  align-self: flex-start;
+  background: #1e293b;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  border-bottom-left-radius: 3px;
+}
+
+.vi-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1e293b;
+  border-top: 1px solid #334155;
+  flex-shrink: 0;
+}
+
+.vi-input {
+  flex: 1;
+  min-width: 0;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.vi-input:focus {
+  border-color: #38bdf8;
+}
+
+.vi-send-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.vi-send-btn:hover {
+  background: #1d4ed8;
+}
+
+.vi-send-btn.vi-btn-stop {
+  background: #dc2626;
+  color: #ffffff;
+  animation: viPulseStop 1.8s infinite ease-in-out;
+}
+
+.vi-send-btn.vi-btn-stop:hover {
+  background: #b91c1c;
+}
+
+@keyframes viPulseStop {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(220, 38, 38, 0);
+  }
+}
+
+.vi-send-btn svg {
+  display: block;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .vi-chat-pane {
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto !important;
+    max-width: none;
+    border-radius: 10px;
+  }
+  .vi-resize-handle {
+    display: none !important;
+  }
+}
+
+/* Bubbly typing ellipsis indicator */
+.vi-bubble.vi-typing-bubble {
+  padding: 11px 15px;
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.vi-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 10px;
+}
+
+.vi-typing-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  display: inline-block;
+  animation: viTypingBounce 1.3s infinite ease-in-out both;
+}
+
+.vi-typing-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.vi-typing-dots span:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.vi-typing-dots span:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+@keyframes viTypingBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+
+/* ---------- Markdown viewer for Vi answers ---------- */
+.vi-chat-pane .vi-bubble.assistant.vi-markdown {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
+}
+
+.vi-chat-pane .vi-markdown > *:first-child { margin-top: 0 !important; }
+.vi-chat-pane .vi-markdown > *:last-child { margin-bottom: 0 !important; }
+
+.vi-chat-pane .vi-markdown p {
+  margin: 0 0 8px;
+  color: inherit;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.vi-chat-pane .vi-markdown h1,
+.vi-chat-pane .vi-markdown h2,
+.vi-chat-pane .vi-markdown h3,
+.vi-chat-pane .vi-markdown h4,
+.vi-chat-pane .vi-markdown h5,
+.vi-chat-pane .vi-markdown h6 {
+  margin: 12px 0 6px;
+  color: #f8fafc;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.vi-chat-pane .vi-markdown h1 { font-size: 16px; }
+.vi-chat-pane .vi-markdown h2 { font-size: 15px; }
+.vi-chat-pane .vi-markdown h3 { font-size: 13.5px; color: #93c5fd; }
+.vi-chat-pane .vi-markdown h4,
+.vi-chat-pane .vi-markdown h5,
+.vi-chat-pane .vi-markdown h6 {
+  font-size: 12.5px;
+  color: #cbd5e1;
+}
+
+.vi-chat-pane .vi-markdown ul,
+.vi-chat-pane .vi-markdown ol {
+  margin: 4px 0 8px;
+  padding-left: 20px;
+}
+
+.vi-chat-pane .vi-markdown ul { list-style: disc; }
+.vi-chat-pane .vi-markdown ol { list-style: decimal; }
+.vi-chat-pane .vi-markdown li ul { list-style: circle; margin: 3px 0 2px; }
+.vi-chat-pane .vi-markdown li {
+  margin: 3px 0;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.vi-chat-pane .vi-markdown strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.vi-chat-pane .vi-markdown a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+.vi-chat-pane .vi-markdown a:hover {
+  text-decoration: underline;
+}
+
+.vi-chat-pane .vi-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 1px 4px;
+  color: #fbbf24;
+}
+
+.vi-chat-pane .vi-markdown pre.vi-code-block {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px 10px;
+  overflow-x: auto;
+  margin: 6px 0 8px;
+}
+
+.vi-chat-pane .vi-markdown pre.vi-code-block code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e2e8f0;
+  white-space: pre;
+}
+
+.vi-chat-pane .vi-markdown blockquote {
+  margin: 6px 0 8px;
+  padding: 6px 10px;
+  border-left: 3px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border-radius: 0 6px 6px 0;
+  color: #e2e8f0;
+  font-style: italic;
+}
+
+.vi-chat-pane .vi-markdown hr {
+  border: none;
+  border-top: 1px solid #334155;
+  margin: 10px 0;
+}
+
+.vi-chat-pane .vi-markdown .vi-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vi-chat-pane .vi-markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 280px;
+  font-size: 11.5px;
+}
+
+.vi-chat-pane .vi-markdown th,
+.vi-chat-pane .vi-markdown td {
+  border: 1px solid #334155;
+  padding: 5px 7px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.vi-chat-pane .vi-markdown th {
+  background: #0f172a;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+/* Timestamp Badges (rendered inside assistant bubble) */
+.vi-chat-pane .vi-markdown .vi-ts-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 2px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  vertical-align: baseline;
+}
+
+.vi-chat-pane .vi-markdown .vi-ts-badge:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #e0f2fe;
+}
+
+.vi-chat-pane .vi-markdown .vi-ts-badge.vi-ts-copied {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+}
+
+.vi-chat-pane .vi-markdown .vi-ts-icon {
+  font-size: 9.5px;
+}

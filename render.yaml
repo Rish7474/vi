@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: vi-backend
+    runtime: node
+    plan: starter
+    buildCommand: "echo 'No build step needed (zero external dependencies)'"
+    startCommand: "npm start"
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8787
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: DEFAULT_LLM_PROVIDER
+        value: gemini

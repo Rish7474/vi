@@ -1,0 +1,73 @@
+{
+  "manifest_version": 3,
+  "name": "Vi",
+  "version": "2.1.0",
+  "description": "Instantly downloads transcripts and answers questions with timestamp citations on NYC & NY State government hearing videos.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting",
+    "storage",
+    "sidePanel",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Vi",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.nyc.gov/*",
+        "*://*.ny.gov/*",
+        "*://*.nysenate.gov/*",
+        "*://*.nyassembly.gov/*",
+        "*://*.legistar.com/*",
+        "*://*.granicus.com/*",
+        "*://*.viebit.com/*",
+        "*://*.swagit.com/*",
+        "*://*.mta.info/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "markdown.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
+

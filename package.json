@@ -1,0 +1,13 @@
+{
+  "name": "vi-nyc-gov-video-assistant",
+  "version": "2.1.0",
+  "description": "Vi — Fast NY/NYC Government Video Transcription & Inverted-Index Q&A Service + Chrome Extension",
+  "main": "backend/server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node backend/server.js",
+    "package:extension": "mkdir -p dist && rm -f dist/vi-extension.zip && zip -r dist/vi-extension.zip manifest.json background.js content.js content.css popup.html popup.css popup.js rag.js markdown.js icons/"
+  }
+}

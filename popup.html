@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vi</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <img src="icons/icon32.png" alt="Vi logo" class="brand-logo" width="20" height="20" />
+      <span>Vi</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="header-action-btn" id="popoutBtn" title="Open in separate wide tab">↗ Pop Out</button>
+      <button type="button" class="header-action-btn" id="settingsToggleBtn" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- Optional Settings Drawer (Backend URL & API Key) -->
+  <section class="settings-panel hidden" id="settingsPanel">
+    <label for="backendUrlInput">Backend Service URL</label>
+    <input type="url" id="backendUrlInput" value="http://localhost:8787" />
+    <label for="apiKeyInput">LLM API Key (optional)</label>
+    <input type="password" id="apiKeyInput" placeholder="sk-... or Gemini key" />
+    <button type="button" class="btn primary-btn" id="saveSettingsBtn">Save</button>
+  </section>
+
+  <!-- Step 1: Select a video on the page -->
+  <section class="selector-section">
+    <label for="videoSelect" class="field-label">Select Video on Page</label>
+    <select id="videoSelect" class="video-select">
+      <option value="">Scanning page for videos...</option>
+    </select>
+
+    <!-- Two Primary Actions: 1) Download Transcription  2) Ask Vi -->
+    <div class="action-buttons">
+      <button type="button" class="btn secondary-btn" id="downloadTranscriptBtn">
+        ⬇ Download Transcription
+      </button>
+      <button type="button" class="btn primary-btn" id="askViBtn">
+        <img src="icons/icon32.png" alt="" class="btn-logo" width="15" height="15" />
+        <span>Ask Vi</span>
+      </button>
+    </div>
+
+    <div class="status-line" id="statusLine"></div>
+  </section>
+
+  <!-- Ask Vi Chat Pane (shown when user clicks "Ask Vi") -->
+  <section class="chat-pane hidden" id="chatPane">
+    <div class="chat-messages" id="chatMessages"></div>
+    <form class="chat-form" id="chatForm">
+      <input
+        type="text"
+        id="chatInput"
+        placeholder="Ask Vi"
+        autocomplete="off"
+      />
+      <button type="submit" class="chat-send-btn" id="chatSendBtn" title="Send question" aria-label="Send">
+        <svg class="icon-arrow" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M12 4l-6.5 6.5 1.41 1.41L11 7.83V20h2V7.83l4.09 4.08 1.41-1.41L12 4z"/>
+        </svg>
+      </button>
+    </form>
+  </section>
+
+  <script src="markdown.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
