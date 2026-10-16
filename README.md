@@ -84,7 +84,7 @@ cp .env.example .env
 ```bash
 npm start
 # Server listens on http://0.0.0.0:8787
-# Health check available at: http://localhost:8787/api/health
+# Health check available at: http://localhost:8787/api/health (or production https://vi-m5ke.onrender.com/api/health)
 ```
 
 ### 3. Load the Extension in Chrome

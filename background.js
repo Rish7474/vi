@@ -1,7 +1,7 @@
 // background.js — Vi Extension Service Worker
 // Forwards "Download Transcription", "Ask Vi (init)", and "Ask Vi (chat)" calls to the backend service.
 
-const DEFAULT_BACKEND_URL = "http://localhost:8787";
+const DEFAULT_BACKEND_URL = "https://vi-m5ke.onrender.com";
 
 async function getConfig() {
   try {
@@ -14,15 +14,18 @@ async function getConfig() {
             apiKey: "",
             model: "gemini-3.8-flash"
           },
-          (res) =>
-            resolve(
-              res || {
-                backendUrl: DEFAULT_BACKEND_URL,
-                provider: "gemini",
-                apiKey: "",
-                model: "gemini-3.8-flash"
-              }
-            )
+          (res) => {
+            const backendUrl =
+              res && res.backendUrl && res.backendUrl !== "http://localhost:8787"
+                ? res.backendUrl
+                : DEFAULT_BACKEND_URL;
+            resolve({
+              backendUrl,
+              provider: res?.provider || "gemini",
+              apiKey: res?.apiKey || "",
+              model: res?.model || "gemini-3.8-flash"
+            });
+          }
         );
       });
     }

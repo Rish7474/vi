@@ -4,7 +4,7 @@
 //   2) Ask Vi (opens a chat pane to ask questions about the video)
 
 (() => {
-  const BACKEND_BASE = "http://localhost:8787";
+  const BACKEND_BASE = "https://vi-m5ke.onrender.com";
 
   // Clean up any stale UI from previous extension reloads on this tab
   [
@@ -84,7 +84,11 @@
       if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
         return await new Promise((resolve) => {
           chrome.storage.local.get({ backendUrl: BACKEND_BASE }, (cfg) => {
-            resolve(((cfg && cfg.backendUrl) || BACKEND_BASE).replace(/\/+$/, ""));
+            const effective =
+              cfg && cfg.backendUrl && cfg.backendUrl !== "http://localhost:8787"
+                ? cfg.backendUrl
+                : BACKEND_BASE;
+            resolve(effective.replace(/\/+$/, ""));
           });
         });
       }

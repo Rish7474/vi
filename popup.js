@@ -4,7 +4,7 @@
 
 const EXAMPLE_URL =
   "https://legistar.council.nyc.gov/MeetingDetail.aspx?ID=1437157&GUID=78DE09C8-0EB9-43B1-811B-89885C58A8DE&Options=info%7C&Search=";
-const DEFAULT_BACKEND_URL = "http://localhost:8787";
+const DEFAULT_BACKEND_URL = "https://vi-m5ke.onrender.com";
 
 const videoSelect = document.getElementById("videoSelect");
 const downloadTranscriptBtn = document.getElementById("downloadTranscriptBtn");
@@ -360,7 +360,10 @@ chatForm.addEventListener("submit", async (e) => {
       },
       (cfg) => {
         if (cfg) {
-          backendUrlInput.value = cfg.backendUrl || DEFAULT_BACKEND_URL;
+          backendUrlInput.value =
+            cfg.backendUrl && cfg.backendUrl !== "http://localhost:8787"
+              ? cfg.backendUrl
+              : DEFAULT_BACKEND_URL;
           apiKeyInput.value = cfg.apiKey || "";
         }
       }
