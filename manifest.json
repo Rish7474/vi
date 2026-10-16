@@ -12,7 +12,16 @@
     "tabs"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://*.nyc.gov/*",
+    "*://*.ny.gov/*",
+    "*://*.nysenate.gov/*",
+    "*://*.nyassembly.gov/*",
+    "*://*.legistar.com/*",
+    "*://*.granicus.com/*",
+    "*://*.viebit.com/*",
+    "*://*.swagit.com/*",
+    "*://*.mta.info/*",
+    "https://vi-m5ke.onrender.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -65,7 +74,15 @@
         "icons/*.png"
       ],
       "matches": [
-        "<all_urls>"
+        "*://*.nyc.gov/*",
+        "*://*.ny.gov/*",
+        "*://*.nysenate.gov/*",
+        "*://*.nyassembly.gov/*",
+        "*://*.legistar.com/*",
+        "*://*.granicus.com/*",
+        "*://*.viebit.com/*",
+        "*://*.swagit.com/*",
+        "*://*.mta.info/*"
       ]
     }
   ]
